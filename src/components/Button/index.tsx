@@ -6,6 +6,9 @@ const Button = (props: ButtonProps) => {
     <StyledButton
       onClick={ (e: any) => props.onClick(e) }
       disabled={ props.disabled }
+      width={ props.width }
+      color={ props.color }
+      backgroundColor={ props.backgroundColor }
     >
       {props.title}
     </StyledButton>

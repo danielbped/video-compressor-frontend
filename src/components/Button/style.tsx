@@ -1,15 +1,15 @@
 import styled from "styled-components"
 
-const StyledButton = styled.button`
+const StyledButton = styled.button<{ width?: number, backgroundColor?: string, color?: string }>`
   border: none;
   padding: 1rem;
-  color: #1E1E1E;
-  baground-color: #363565;
+  color: ${props => props.color ? props.color : '#1E1E1E'};
+  background-color: ${props => props.backgroundColor ? props.backgroundColor : '#363565'};
   margin-bottom: 1rem;
   margin-right: 1rem;
   font-weight: bold;
   border-radius: 1rem;
-  width: 100%;
+  width: ${props => props.width ? `${props.width}%` : '100%'};
   
   &:hover {
     cursor: pointer;

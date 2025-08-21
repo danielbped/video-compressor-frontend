@@ -8,7 +8,6 @@ import DraggingArea from "../../components/DraggingArea"
 import {
   StyledCompressor,
   StyledCompressorDroppingArea,
-  StyledCompressorHeader,
   HiddenInput,
   StyledFileListToUpload
 } from "./style"
@@ -16,6 +15,7 @@ import Button from "../../components/Button"
 import { File, FileToUpload } from "../../interfaces/file-data.interface"
 import useNewFilesMutate from "../../hooks/useNewFilesMutate"
 import useDeleteFileMutate from "../../hooks/useDeleteFileMutate"
+import Header from "../../components/Header"
 // import { useDispatch } from "react-redux"
 
 const Compressor = () => {
@@ -107,19 +107,13 @@ const Compressor = () => {
 
   return (
     <StyledCompressor>
-      <StyledCompressorHeader>
-        <h1>Video Compressor</h1>
-        <div>
-          <p>{ user.firstName } { user.LastName }</p>
-          <Button
-            title="Sair"
-            onClick={() => {
-              setToken(null)
-              navigate('/login')
-            }}
-          />
-        </div>
-      </StyledCompressorHeader>
+      <Header
+        user={user}
+        handleLogout={() => {
+          setToken(null)
+          navigate('/login')
+        }}
+      />
       <HiddenInput ref={ fileInputRef } type="file" accept="video/*" onChange={ handleInput } />
       <h1>Comprimir Vídeos</h1>
       <p>Diminua o tamanho do seu vídeo, mantendo a melhor qualidade possível. Otimize seus vídeos.</p>

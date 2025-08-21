@@ -23,10 +23,21 @@ export interface ButtonProps {
   title: string
   onClick: MouseEventHandler<HTMLButtonElement>
   disabled?: boolean
+  width?: number
+  color?: string
+  backgroundColor?: string
 }
 
 export interface ErrorMessageProps {
   message: string
+}
+
+export interface HeaderProps {
+  user?: {
+    firstName: string
+    LastName: string
+  }
+  handleLogout?: MouseEventHandler<HTMLButtonElement>
 }
 
 export interface LoginFormInterface {
@@ -36,4 +47,10 @@ export interface LoginFormInterface {
   isError: boolean
   error: string
   handleKeyPress: (event: React.KeyboardEvent<HTMLInputElement>) => void
+}
+
+export interface SocialIconProps {
+  iconUrl: string
+  alt: string
+  link: string
 }

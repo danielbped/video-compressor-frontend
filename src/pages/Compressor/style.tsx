@@ -18,15 +18,6 @@ export const StyledCompressor = styled.div`
   height: 90vh;
 `
 
-export const StyledCompressorHeader = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 20px;
-  width: 95%;
-  padding: 0 1.5rem;
-`
-
 export const HiddenInput = styled.input`
   display: none;
   width: 0;
