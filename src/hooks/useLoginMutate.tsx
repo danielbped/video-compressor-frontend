@@ -5,7 +5,7 @@ import { type LoginData, type LoginResponse } from "../interfaces/login-data.int
 const { VITE_API_URL } = import.meta.env
 
 const login = async (data: LoginData): AxiosPromise<LoginResponse> => {
-  const response = await axios.post<LoginResponse>(VITE_API_URL + '/login', data)
+  const response = await axios.post<LoginResponse>(VITE_API_URL + '/api/login', data)
   return response
 }
 

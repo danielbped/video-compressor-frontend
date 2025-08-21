@@ -5,7 +5,7 @@ import { type RegisterData, type RegisterResponse } from "../interfaces/register
 const { VITE_API_URL } = import.meta.env
 
 const register = async (data: RegisterData): AxiosPromise<RegisterResponse> => {
-  const response = await axios.post<RegisterResponse>(VITE_API_URL + '/user', data)
+  const response = await axios.post<RegisterResponse>(VITE_API_URL + '/api/user', data)
   return response
 }
 
