@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import { useRef } from "react";
 import { HiddenInput } from "../../pages/Compressor/style";
 import Button from "../Button";
 
@@ -15,9 +15,9 @@ const FileUpload: React.FC<FileUploadProps> = ({ onFilesSelected }) => {
         ref={fileInputRef}
         type="file"
         accept="video/*"
-        onChange={e => onFilesSelected(e.target.files)}
+        onChange={(e: any) => onFilesSelected(e.target.files)}
         multiple
-        
+        data-testid="file-input"
       />
       <Button
         title="Selecionar Vídeos"
