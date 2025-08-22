@@ -25,13 +25,14 @@ const newFiles = async (data: NewFileData): Promise<AxiosPromise<FileResponse> |
   return null
 }
 
-const useNewFilesMutate = () => {
+const useNewFilesMutate = (onSuccessCallback?: () => void) => {
   const queryClient = useQueryClient()
 
   const mutate = useMutation({
     mutationFn: async (data: NewFileData) => newFiles(data),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['file-data'] })
+      queryClient.invalidateQueries({ queryKey: ["file-data"] })
+      if (onSuccessCallback) onSuccessCallback();
     },
   })
 

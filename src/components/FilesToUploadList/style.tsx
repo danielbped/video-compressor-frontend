@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 export const StyledFileListToUpload = styled.div`
   margin: 1rem 0;
@@ -62,3 +62,53 @@ export const StyledFileItem = styled.div`
   }
 `;
 
+const shimmer = keyframes`
+  0% { background-position: -200px 0; }
+  100% { background-position: 200px 0; }
+`;
+
+export const StyledLoader = styled.div`
+  font-size: 0.875rem;
+  color: #555;
+  padding: 0.25rem 0.75rem;
+  border-radius: 6px;
+  background: linear-gradient(
+    90deg,
+    #eee 25%,
+    #ddd 50%,
+    #eee 75%
+  );
+  background-size: 400% 100%;
+  animation: ${shimmer} 1.2s ease-in-out infinite;
+`;
+
+export const StyledLoadingBar = styled.div`
+  flex: 1;
+  margin-left: 1rem;
+  height: 6px;
+  border-radius: 4px;
+  background: #e0e0e0;
+  overflow: hidden;
+  position: relative;
+
+  .progress {
+    position: absolute;
+    left: -40%;
+    width: 40%;
+    height: 100%;
+    background: linear-gradient(90deg, #4cafef, #2196f3);
+    animation: loading 1s infinite;
+  }
+
+  @keyframes loading {
+    0% { left: -40%; }
+    50% { left: 100%; }
+    100% { left: -40%; }
+  }
+`;
+
+export const StyledProgress = styled.div`
+  height: 100%;
+  background: linear-gradient(90deg, #4cafef, #2196f3);
+  transition: width 0.2s ease;
+`;

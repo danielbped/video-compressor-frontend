@@ -20,15 +20,23 @@ import {
   StyledCompressorParagraph
 } from "./style";
 
+interface FileToUploadWithProgress extends FileToUpload {
+  isUploading?: boolean;
+  progress?: number;
+}
+
 const Compressor = () => {
   const [token, setToken] = useLocalStorage("token", null);
-  const [filesToUpload, setFilesToUpload] = useState<FileToUpload[]>([]);
+  const [filesToUpload, setFilesToUpload] = useState<FileToUploadWithProgress[]>([]);
   const [files, setFiles] = useState<File[]>([]);
   const user = useSelector((root: any) => root.userReducer);
   const navigate = useNavigate();
-  const useNewFiles = useNewFilesMutate();
   const deleteFileMutate = useDeleteFileMutate();
   const { data } = useFileData(token);
+
+  const useNewFiles = useNewFilesMutate(() => {
+    setFilesToUpload([]);
+  });
 
   const {
     isDragging,
@@ -42,7 +50,12 @@ const Compressor = () => {
   useEffect(() => { if (data) setFiles(data); }, [data]);
   useEffect(() => { if (!user.id) { setToken(null); navigate("/login"); } }, [user.id]);
 
-  const handleSendFiles = () => useNewFiles.mutate({ files: filesToUpload, token });
+  const handleSendFiles = () => {
+    setFilesToUpload(prev => prev.map(f => ({ ...f, isUploading: true, progress: 0 })));
+
+    useNewFiles.mutate({ files: filesToUpload, token });
+  };
+
   const handleDeleteFile = (fileId: string) => deleteFileMutate.mutate({ file: fileId, token });
 
   return (
@@ -66,13 +79,18 @@ const Compressor = () => {
       >
         {isDragging && <DraggingArea />}
         <h2>Arquivos preparados para comprimir</h2>
+
         <FilesToUploadList
           files={filesToUpload}
-           onRemove={(index) =>
-            setFilesToUpload(prev => prev.filter((_, i) => i !== index))
-          }
+          onRemove={(index) => setFilesToUpload(prev => prev.filter((_, i) => i !== index))}
+          onFinishUpload={(index) => setFilesToUpload(prev => prev.filter((_, i) => i !== index))}
         />
-        <Button title="Comprimir Vídeos" onClick={handleSendFiles} disabled={filesToUpload.length === 0} />
+
+        <Button
+          title="Comprimir Vídeos"
+          onClick={handleSendFiles}
+          disabled={filesToUpload.length === 0 || filesToUpload.every(f => f.isUploading)}
+        />
       </StyledCompressorDroppingArea>
 
       <h2>Arquivos comprimidos</h2>
