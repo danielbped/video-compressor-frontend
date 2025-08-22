@@ -1,6 +1,6 @@
 # CompactaVideos
 
-Trata-se do Frontend uma aplicação que possibilita os usuário de anexar arquivos, que serão comprimidos e ficarão armazenados na nuvem através do [Google Cloud Storage](https://cloud.google.com/storage/docs/). Estes vídeos anexados poderão ser visualizados, excluídos ou baixados. A aplicação possui uma sessão de Login e criação de usuário. Para rodar esta aplicação, será necessário rodar em conjunto a [API](https://github.com/danielbped/video-compressor).
+Trata-se do Frontend uma aplicação que possibilita os usuários anexem arquivos, que serão comprimidos e ficarão armazenados na nuvem através do [Google Cloud Storage](https://cloud.google.com/storage/docs/). Estes vídeos anexados poderão ser visualizados, excluídos ou baixados. A aplicação possui uma sessão de Login e criação de usuário. Para rodar esta aplicação, será necessário rodar em conjunto a [API](https://github.com/danielbped/video-compressor).
 
 # Sumário
 
