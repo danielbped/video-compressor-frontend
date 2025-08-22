@@ -35,7 +35,7 @@ export interface ErrorMessageProps {
 export interface HeaderProps {
   user?: {
     firstName: string
-    LastName: string
+    lastName: string
   }
   handleLogout?: MouseEventHandler<HTMLButtonElement>
 }

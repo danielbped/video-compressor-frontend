@@ -1,7 +1,12 @@
 import { useNavigate } from "react-router-dom"
 import { HeaderProps } from "../../interfaces/components.interface"
 import Button from "../Button"
-import { StyledCompressorHeader, StyledCompressorTitle } from "./style"
+import {
+  StyledCompressorHeader,
+  StyledCompressorTitle,
+  StyledUserName,
+  StyledUserSection
+} from "./style"
 
 const Header = (props: HeaderProps) => {
   const navigate = useNavigate()
@@ -9,14 +14,14 @@ const Header = (props: HeaderProps) => {
     <StyledCompressorHeader>
       <StyledCompressorTitle>CompactaVideos</StyledCompressorTitle>
       {props.handleLogout && props.user
-      ? <div>
-          <p>{ props.user.firstName } { props.user.LastName }</p>
+      ? <StyledUserSection>
+          <StyledUserName>{ props.user.firstName } { props.user.lastName }</StyledUserName>
           <Button
             title="Sair"
             onClick={props.handleLogout}
-            width={10}
+            width={50}
           />
-        </div>
+        </StyledUserSection>
       : <Button
           title="Login"
           onClick={() => navigate('/login')}
