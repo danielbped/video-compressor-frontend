@@ -10,7 +10,7 @@ import FileUpload from "../../components/FileUpload";
 import FilesToUploadList from "../../components/FilesToUploadList";
 import CompressedFilesList from "../../components/CompressedFilesList";
 import Button from "../../components/Button";
-import { File, FileToUpload } from "../../interfaces/file-data.interface";
+import { File } from "../../interfaces/file-data.interface";
 import { useFileDragAndDrop } from "../../hooks/useFileDragAndDrop";
 import {
   StyledCompressor,
