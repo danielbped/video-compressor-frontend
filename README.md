@@ -9,6 +9,7 @@ Trata-se do Frontend uma aplicação que possibilita os usuário de anexar arqui
   - [.env](#env)
   - [Iniciando a aplicação](#start)
 - [Demonstração](#demo)
+- [Testes unitários](#testes)
 
 ## Tecnologias utilizadas <a name="tecnologias"></a>
 - **[ReactJS](https://react.dev/)**: Uma biblioteca JavaScript de código aberto utilizada para construir interfaces de usuário (UI). Desenvolvida pelo Facebook, ela é baseada em componentes reutilizáveis, permitindo a construção de interfaces dinâmicas e interativas de forma eficiente.
@@ -82,3 +83,8 @@ Os dados não precisam ser alterados, caso a aplicação da [API](https://github
 ![Compressor](./public/images/Compressor.png)
 ![Compressor](./public/images/CompressorGif.gif)
 
+## Testes Unitários <a name="testes"></a>
+
+Todos os componentes estão devidamente testados, os testes podem ser rodados com o seguinte comando
+
+      npm test
