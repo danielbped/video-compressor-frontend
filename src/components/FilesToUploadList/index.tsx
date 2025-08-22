@@ -26,7 +26,7 @@ const FilesToUploadList: React.FC<Props> = ({ files, onRemove, onFinishUpload })
 
       return (
         <StyledFileItem key={index}>
-          <span>{file.name}</span>
+          <span>{file.name || "Carregando..."}</span>
 
           {file.isUploading ? (
             <StyledLoadingBar>

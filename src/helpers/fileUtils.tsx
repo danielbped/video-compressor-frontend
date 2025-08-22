@@ -12,3 +12,16 @@ export const validateMaxFiles = (currentFiles: FileToUpload[], newFiles: FileToU
   }
   return true;
 };
+
+export const validateMaxFilesSize = (files: FileToUpload[]): boolean => {
+  return files.every(file => validateMaxFileSize(file));
+}
+
+export const validateMaxFileSize = (file: FileToUpload, maxSizeMB = 10): boolean => {
+  const maxSizeBytes = maxSizeMB * 1024 * 1024;
+  if (file.size > maxSizeBytes) {
+    alert(`O arquivo ${file.name} excede o tamanho máximo de ${maxSizeMB}MB.`);
+    return false;
+  }
+  return true;
+};

@@ -1,6 +1,6 @@
 import { useState, useCallback } from "react";
 import { FileToUpload } from "../interfaces/file-data.interface";
-import { filterVideoFiles, validateMaxFiles } from "../helpers/fileUtils";
+import { filterVideoFiles, validateMaxFiles, validateMaxFilesSize } from "../helpers/fileUtils";
 
 type SetFilesToUpload = React.Dispatch<React.SetStateAction<FileToUpload[]>>;
 
@@ -15,6 +15,7 @@ export const useFileDragAndDrop = ({ filesToUpload, setFilesToUpload }: UseFileD
   const handleFile = useCallback((filesData: FileList | null) => {
     const newFiles = filterVideoFiles(filesData);
     if (!validateMaxFiles(filesToUpload, newFiles)) return;
+    if (!validateMaxFilesSize(newFiles)) return;
     setFilesToUpload(prev => [...prev, ...newFiles]);
   }, [filesToUpload, setFilesToUpload]);
 
