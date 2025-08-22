@@ -17,6 +17,10 @@ export const StyledCompressedFilesGrid = styled.div`
   }
 `;
 
+export const StyledNoVideosFound = styled.p`
+  margin-top: .5rem;
+`
+
 export const StyledCompressedFile = styled.div`
   background-color: rgba(255, 255, 255, 0.05);
   border-radius: 1rem;
@@ -55,3 +59,33 @@ export const StyledCompressedFile = styled.div`
 export const StyledCompressedFileActions = styled.div`
   display: flex;
 `
+
+export const StyledCompressedFileInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  font-family: 'Arial', sans-serif;
+  font-size: 14px;
+  color: #333;
+  width: 100%;
+`;
+
+export const FileInfoText = styled.p`
+  margin: 0;
+  max-width: 300px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
+
+export const CompressionPercentage = styled.p`
+  margin: auto 0;
+  font-weight: bold;
+  padding: .5rem;
+  background-color: #1e90ff;
+  color: #fff !important;
+  border-radius: 1rem;
+  font-size: 16px !important;
+  width: 95%;
+`;

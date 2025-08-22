@@ -6,7 +6,6 @@ import useFileData from "../../hooks/useFilesDataMutate";
 import useNewFilesMutate from "../../hooks/useNewFilesMutate";
 import useDeleteFileMutate from "../../hooks/useDeleteFileMutate";
 import Header from "../../components/Header";
-import DraggingArea from "../../components/DraggingArea";
 import FileUpload from "../../components/FileUpload";
 import FilesToUploadList from "../../components/FilesToUploadList";
 import CompressedFilesList from "../../components/CompressedFilesList";
@@ -17,7 +16,9 @@ import {
   StyledCompressor,
   StyledCompressorDroppingArea,
   StyledCompressorTitle,
-  StyledCompressorParagraph
+  StyledCompressorParagraph,
+  DroppingContent,
+  StyledCompressedVideosTitle
 } from "./style";
 
 interface FileToUploadWithProgress extends FileToUpload {
@@ -56,11 +57,14 @@ const Compressor = () => {
     useNewFiles.mutate({ files: filesToUpload, token });
   };
 
-  const handleDeleteFile = (fileId: string) => deleteFileMutate.mutate({ file: fileId, token });
+  const handleDeleteFile = (fileId: string) => {
+    setFiles(prev => prev.filter(f => f.id !== fileId))
+    deleteFileMutate.mutate({ file: fileId, token })
+  };
 
   return (
     <StyledCompressor>
-      <Header user={user} handleLogout={() => { setToken(null); navigate("/login"); }} />
+      <Header user={ user } handleLogout={ () => { setToken(null); navigate("/login"); } } />
       <StyledCompressorTitle>Comprimir Vídeos</StyledCompressorTitle>
       <StyledCompressorParagraph>
         Diminua o tamanho do seu vídeo, mantendo a melhor qualidade possível. Otimize seus vídeos.
@@ -68,33 +72,37 @@ const Compressor = () => {
       
       <FileUpload onFilesSelected={handleFile} />
       <StyledCompressorParagraph>
-        arraste e solte os vídeos aqui ou cole os arquivos utilizando CTRL + V
+        arraste e solte os vídeos aqui ou cole os vídeos utilizando CTRL + V
       </StyledCompressorParagraph>
 
       <StyledCompressorDroppingArea
-        onDrop={handleDrop}
-        onDragOver={handleDragOver}
-        onPaste={handlePaste}
-        onDragLeave={handleDragLeave}
+        isDragging={ isDragging }
+        onDrop={ handleDrop }
+        onDragOver={ handleDragOver }
+        onPaste={ handlePaste }
+        onDragLeave={ handleDragLeave }
       >
-        {isDragging && <DraggingArea />}
-        <h2>Arquivos preparados para comprimir</h2>
+        <h2>
+          { isDragging ? "Solte seus vídeos aqui" : "Vídeos preparados para comprimir" }
+        </h2>
 
-        <FilesToUploadList
-          files={filesToUpload}
-          onRemove={(index) => setFilesToUpload(prev => prev.filter((_, i) => i !== index))}
-          onFinishUpload={(index) => setFilesToUpload(prev => prev.filter((_, i) => i !== index))}
-        />
+        <DroppingContent isDragging={ isDragging } >
+          <FilesToUploadList
+            files={ filesToUpload }
+            onRemove={ (index) => setFilesToUpload(prev => prev.filter((_, i) => i !== index)) }
+            onFinishUpload={ (index) => setFilesToUpload(prev => prev.filter((_, i) => i !== index)) }
+          />
 
-        <Button
-          title="Comprimir Vídeos"
-          onClick={handleSendFiles}
-          disabled={filesToUpload.length === 0 || filesToUpload.every(f => f.isUploading)}
-        />
+          <Button
+            title="Comprimir Vídeos"
+            onClick={ handleSendFiles }
+            disabled={ filesToUpload.length === 0 || filesToUpload.every(f => f.isUploading) }
+          />
+        </DroppingContent>
       </StyledCompressorDroppingArea>
 
-      <h2>Arquivos comprimidos</h2>
-      <CompressedFilesList files={files} onDelete={handleDeleteFile} />
+      <StyledCompressedVideosTitle>Vídeos comprimidos</StyledCompressedVideosTitle>
+      <CompressedFilesList files={ files } onDelete={ handleDeleteFile } />
     </StyledCompressor>
   );
 };

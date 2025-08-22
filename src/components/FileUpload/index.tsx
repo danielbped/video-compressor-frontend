@@ -17,6 +17,7 @@ const FileUpload: React.FC<FileUploadProps> = ({ onFilesSelected }) => {
         accept="video/*"
         onChange={e => onFilesSelected(e.target.files)}
         multiple
+        
       />
       <Button
         title="Selecionar Vídeos"

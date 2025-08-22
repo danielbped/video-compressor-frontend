@@ -36,7 +36,12 @@ export const useFileDragAndDrop = ({ filesToUpload, setFilesToUpload }: UseFileD
 
   const handleDragLeave = useCallback((e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
-    if (e.clientX === 0 && e.clientY === 0) {
+    const rect = (e.target as HTMLDivElement).getBoundingClientRect();
+    if (e.clientX < rect.left ||
+      e.clientX > rect.right ||
+      e.clientY < rect.top ||
+      e.clientY > rect.bottom)
+    {
       setIsDragging(false);
     }
   }, []);

@@ -12,7 +12,7 @@ interface Props {
 
 const FilesToUploadList: React.FC<Props> = ({ files, onRemove, onFinishUpload }) => (
   <StyledFileListToUpload>
-    {files.length === 0 && <p>Nenhum arquivo selecionado</p>}
+    {files.length === 0 && <p>Nenhum vídeo selecionado</p>}
 
     {files.map((file, index) => {
       const { progress, finish } = useFakeProgress(file.isUploading ?? false);

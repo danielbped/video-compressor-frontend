@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { DroppingAreaProps } from "../../interfaces/file-data.interface";
 
 export const StyledCompressor = styled.div`
   display: flex;
@@ -8,6 +9,10 @@ export const StyledCompressor = styled.div`
   box-sizing: border-box;
   padding-bottom: 2rem;
 `;
+
+export const StyledCompressedVideosTitle = styled.h2`
+  margin-bottom: 1rem;
+`
 
 export const StyledCompressorTitle = styled.h1`
   font-size: 1.8rem;
@@ -39,11 +44,18 @@ export const StyledCompressorParagraph = styled.p`
   }
 `;
 
-export const StyledCompressorDroppingArea = styled.div`
+export const DroppingContent = styled.div<DroppingAreaProps>`
+  transition: all 0.3s ease-in-out;
+  filter: ${props => (props.isDragging ? "blur(2px)" : "none")};
+  pointer-events: ${props => (props.isDragging ? "none" : "auto")};
+  position: relative;
+`;
+
+export const StyledCompressorDroppingArea = styled.div<DroppingAreaProps>`
   width: 100%;
-  border: 2px dashed #005ae1;
+  border: ${props => (props.isDragging ? "4px dashed #0070ff" : "2px dashed #005ae1")};
   border-radius: 1rem;
-  background-color: rgba(255, 255, 255, 0.02);
+  background-color: ${props => (props.isDragging ? "rgba(0, 90, 225, 0.15)" : "rgba(255, 255, 255, 0.02)")};
   padding: 1.5rem;
   margin: 2rem 0;
   text-align: center;
@@ -70,6 +82,7 @@ export const StyledCompressorDroppingArea = styled.div`
     max-width: 800px;
   }
 `;
+
 
 export const HiddenInput = styled.input`
   display: none;

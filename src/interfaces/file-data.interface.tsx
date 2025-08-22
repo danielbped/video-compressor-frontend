@@ -4,10 +4,19 @@ import { User } from "./user-data.interface"
 export interface File {
   id: string
   user: User
-  url: string
-  filename: string
+  compressed_url: string
+  original_url: string
+  original_filename: string
+  compressed_filename: string
+  original_size: number
+  compressed_size: number
+  compression_percentage: number
   createdAt: Date
   updatedAt: Date
+}
+
+export interface DroppingAreaProps {
+  isDragging: boolean;
 }
 
 export interface FileResponse {
