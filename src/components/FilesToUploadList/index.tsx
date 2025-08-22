@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { FileToUpload } from "../../interfaces/file-data.interface";
 import { StyledFileListToUpload, StyledFileItem, StyledLoadingBar, StyledProgress } from "./style";
 import DeleteButton from "../DeleteButton";
