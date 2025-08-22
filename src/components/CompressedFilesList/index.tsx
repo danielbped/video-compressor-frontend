@@ -1,6 +1,8 @@
 import React from "react";
 import { File } from "../../interfaces/file-data.interface";
 import Button from "../Button";
+import { StyledCompressedFile, StyledCompressedFilesGrid } from "./style";
+
 
 interface Props {
   files: File[];
@@ -10,16 +12,18 @@ interface Props {
 const CompressedFilesList: React.FC<Props> = ({ files, onDelete }) => (
   <>
     {files.length === 0 && <p>Nenhum arquivo encontrado</p>}
-    {files.map(file => (
-      <div key={file.id}>
-        <p>{file.filename}</p>
-        <video width="320" height="240" controls>
-          <source src={file.url} type="video/mp4" />
-        </video>
-        <Button title="Baixar Vídeo" onClick={() => window.open(file.url, "_blank")} />
-        <Button title="Deletar Vídeo" onClick={() => onDelete(file.id)} />
-      </div>
-    ))}
+    <StyledCompressedFilesGrid>
+      {files.map(file => (
+        <StyledCompressedFile key={file.id}>
+          <p>{file.filename}</p>
+          <video controls>
+            <source src={file.url} type="video/mp4" />
+          </video>
+          <Button title="Baixar Vídeo" onClick={() => window.open(file.url, "_blank")} />
+          <Button title="Deletar Vídeo" onClick={() => onDelete(file.id)} />
+        </StyledCompressedFile>
+      ))}
+    </StyledCompressedFilesGrid>
   </>
 );
 

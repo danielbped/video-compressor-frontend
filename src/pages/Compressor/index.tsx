@@ -11,9 +11,14 @@ import FileUpload from "../../components/FileUpload";
 import FilesToUploadList from "../../components/FilesToUploadList";
 import CompressedFilesList from "../../components/CompressedFilesList";
 import Button from "../../components/Button";
-import { StyledCompressor, StyledCompressorDroppingArea } from "./style";
 import { File, FileToUpload } from "../../interfaces/file-data.interface";
 import { useFileDragAndDrop } from "../../hooks/useFileDragAndDrop";
+import {
+  StyledCompressor,
+  StyledCompressorDroppingArea,
+  StyledCompressorTitle,
+  StyledCompressorParagraph
+} from "./style";
 
 const Compressor = () => {
   const [token, setToken] = useLocalStorage("token", null);
@@ -43,11 +48,15 @@ const Compressor = () => {
   return (
     <StyledCompressor>
       <Header user={user} handleLogout={() => { setToken(null); navigate("/login"); }} />
-      <h1>Comprimir Vídeos</h1>
-      <p>Diminua o tamanho do seu vídeo, mantendo a melhor qualidade possível. Otimize seus vídeos.</p>
+      <StyledCompressorTitle>Comprimir Vídeos</StyledCompressorTitle>
+      <StyledCompressorParagraph>
+        Diminua o tamanho do seu vídeo, mantendo a melhor qualidade possível. Otimize seus vídeos.
+      </StyledCompressorParagraph>
       
       <FileUpload onFilesSelected={handleFile} />
-      <p>arraste e solte os vídeos aqui ou cole os arquivos utilizando CTRL + V</p>
+      <StyledCompressorParagraph>
+        arraste e solte os vídeos aqui ou cole os arquivos utilizando CTRL + V
+      </StyledCompressorParagraph>
 
       <StyledCompressorDroppingArea
         onDrop={handleDrop}
@@ -57,7 +66,12 @@ const Compressor = () => {
       >
         {isDragging && <DraggingArea />}
         <h2>Arquivos preparados para comprimir</h2>
-        <FilesToUploadList files={filesToUpload} />
+        <FilesToUploadList
+          files={filesToUpload}
+           onRemove={(index) =>
+            setFilesToUpload(prev => prev.filter((_, i) => i !== index))
+          }
+        />
         <Button title="Comprimir Vídeos" onClick={handleSendFiles} disabled={filesToUpload.length === 0} />
       </StyledCompressorDroppingArea>
 

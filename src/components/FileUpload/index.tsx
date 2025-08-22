@@ -20,6 +20,7 @@ const FileUpload: React.FC<FileUploadProps> = ({ onFilesSelected }) => {
       <Button
         title="Selecionar Vídeos"
         onClick={() => fileInputRef.current?.click()}
+        width={30}
       />
     </>
   );
