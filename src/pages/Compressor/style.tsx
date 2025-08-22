@@ -6,6 +6,7 @@ export const StyledCompressor = styled.div`
   align-items: center;
   min-height: 100vh;
   box-sizing: border-box;
+  padding-bottom: 2rem;
 `;
 
 export const StyledCompressorTitle = styled.h1`

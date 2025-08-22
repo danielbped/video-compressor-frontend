@@ -20,11 +20,7 @@ const StyledButton = styled.button<{ width?: number, backgroundColor?: string, c
 
   &:disabled {
     cursor: not-allowed;
-
-    &:hover {
-      background-color: #FFF;
-      color: #1E1E1E;
-    }
+    opacity: 0.6;
   }
 `
 
