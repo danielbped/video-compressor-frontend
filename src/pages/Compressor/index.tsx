@@ -20,11 +20,7 @@ import {
   DroppingContent,
   StyledCompressedVideosTitle
 } from "./style";
-
-interface FileToUploadWithProgress extends FileToUpload {
-  isUploading?: boolean;
-  progress?: number;
-}
+import { FileToUploadWithProgress } from "../../interfaces/components.interface";
 
 const Compressor = () => {
   const [token, setToken] = useLocalStorage("token", null);

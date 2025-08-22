@@ -1,5 +1,6 @@
 import { type MouseEventHandler } from "react"
 import { type ChangeEventHandler } from "react"
+import { FileToUpload } from "./file-data.interface"
 
 export interface RegisterFormInterface {
   handleRegister: ChangeEventHandler<HTMLInputElement>
@@ -53,4 +54,9 @@ export interface SocialIconProps {
   iconUrl: string
   alt: string
   link: string
+}
+
+export interface FileToUploadWithProgress extends FileToUpload {
+  isUploading?: boolean;
+  progress?: number;
 }
