@@ -1,4 +1,3 @@
-import React from "react"
 import { File } from "../../interfaces/file-data.interface"
 import Button from "../Button"
 import {
@@ -17,7 +16,7 @@ interface Props {
   onDelete: (fileId: string) => void
 }
 
-const CompressedFilesList: React.FC<Props> = ({ files, onDelete }) => (
+const CompressedFilesList: React.FC<Props> = ({ files, onDelete }: Props) => (
   <>
     { files.length === 0 && <StyledNoVideosFound>Nenhum vídeo encontrado, os vídeos comprimidos aparecerão aqui.</StyledNoVideosFound> }
     <StyledCompressedFilesGrid>
