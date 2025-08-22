@@ -56,6 +56,8 @@ const RegisterForm = (props: RegisterFormInterface) => {
         <Button
           title='Voltar'
           onClick={ () => props.handleNavigate('login') }
+          backgroundColor='transparent'
+          color='#111111'
         />
       </StyledButtonSection>
       { props.isError && <p>{ props.error }</p> }

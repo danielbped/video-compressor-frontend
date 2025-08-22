@@ -26,8 +26,6 @@ const Home = () => {
           title="Começar Agora"
           onClick={() => navigate('/login')}
           width={25}
-          color="#ffffff"
-          backgroundColor="#005ae1"
         />
         <StyledCallToActionContainer>
           <StyledCallToActionParagraph>Já tem uma conta?

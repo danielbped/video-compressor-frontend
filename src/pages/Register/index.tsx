@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom"
 import { type LoginResponse } from "../../interfaces/login-data.interface"
 import { GET_USER } from "../../redux/actionTypes/user"
 import { useDispatch } from "react-redux"
+import SideSection from "../../components/SideSection"
 
 const Register = () => {
   const [token, setToken] = useLocalStorage<LoginResponse | null>("token", null)
@@ -59,7 +60,7 @@ const Register = () => {
         payload: data.data.user,
       })
 
-      handleNavigate('chats')
+      handleNavigate('compressor')
     }
   }, [isSuccess, data])
 
@@ -74,6 +75,7 @@ const Register = () => {
         handleNavigate={ handleNavigate }
         disabledButton={ disableSubmit() }
       />
+      <SideSection />
     </StyledRegister>
   )
 }

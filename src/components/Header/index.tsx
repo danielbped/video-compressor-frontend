@@ -15,16 +15,12 @@ const Header = (props: HeaderProps) => {
             title="Sair"
             onClick={props.handleLogout}
             width={10}
-            color="#ffffff"
-            backgroundColor="#005ae1"
           />
         </div>
       : <Button
           title="Login"
           onClick={() => navigate('/login')}
           width={10}
-          color="#ffffff"
-          backgroundColor="#005ae1"
         />
       }
     </StyledCompressorHeader>

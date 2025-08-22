@@ -3,8 +3,8 @@ import styled from "styled-components"
 const StyledButton = styled.button<{ width?: number, backgroundColor?: string, color?: string }>`
   border: none;
   padding: 1rem;
-  color: ${props => props.color ? props.color : '#1E1E1E'};
-  background-color: ${props => props.backgroundColor ? props.backgroundColor : '#363565'};
+  color: ${props => props.color ? props.color : '#ffffff'};
+  background-color: ${props => props.backgroundColor ? props.backgroundColor : '#005ae1'};
   margin-bottom: 1rem;
   margin-right: 1rem;
   font-weight: bold;

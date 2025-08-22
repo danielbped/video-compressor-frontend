@@ -7,6 +7,7 @@ import { useLocalStorage } from "@uidotdev/usehooks"
 import { type ChangeEventHandler, useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
 import { GET_USER } from "../../redux/actionTypes/user"
+import SideSection from "../../components/SideSection"
 
 const Login = () => {
   const [token, setToken] = useLocalStorage<LoginResponse | null>("token", null)
@@ -54,12 +55,13 @@ const Login = () => {
         payload: data.data.user,
       })
 
-      handleNavigate('chats')
+      handleNavigate('compressor')
     }
   }, [isSuccess, data])
 
   return (
     <StyledLogin>
+      <SideSection />
       <LoginForm
         // @ts-ignore:next-line
         error={ error?.response.data.message }
